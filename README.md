@@ -1,90 +1,93 @@
-# Multi-View-Capture-Toolkit-for-3D-4D-Gaussian-Splatting-Blender-Add-on-
+# Multi-View Capture Toolkit for 3D/4D Gaussian Splatting (Blender Add-on)
+
 A Blender add-on for generating multi-view datasets and per-frame COLMAP data for 3D Gaussian Splatting (3DGS) and dynamic (4DGS) reconstruction.
 
-This tool provides a streamlined pipeline for:
+This toolkit provides a structured pipeline for synthesizing consistent multi-view observations of static and animated scenes, enabling efficient dataset creation for Gaussian-based neural rendering methods.
 
-* Multi-camera rig creation (studio-style capture)
-* Batch rendering of multi-view images
-* Automatic export of COLMAP-compatible data
-* Frame-by-frame dataset generation for animated sequences
+---
+
+## Overview
+
+Recent advances in 3D Gaussian Splatting and its dynamic extensions require high-quality multi-view datasets with accurate camera parameters. Generating such datasets from animated 3D assets is not straightforward and often requires multiple tools and manual processing steps.
+
+This add-on integrates the full pipeline inside Blender by providing:
+
+* A predefined studio-style multi-camera rig
+* Automated multi-view rendering
+* COLMAP-compatible data export
+* Frame-wise dataset generation for animated sequences
+
+The generated outputs are directly suitable for training 3DGS and 4DGS models.
 
 ---
 
 ## Features
 
-* **Studio Capture Dome**
+### Studio Capture Dome
 
-  * Predefined hemispherical camera rig for character and human capture
-  * Consistent multi-view coverage
+A hemispherical multi-camera rig designed to approximate real-world capture setups. Cameras are distributed to provide uniform coverage of the subject.
 
-* **Multi-view Rendering**
+### Multi-view Rendering
 
-  * Render all cameras automatically
-  * Supports per-frame rendering for animations
+Automatically renders images from all cameras in the array. Supports both static scenes and animated sequences.
 
-* **COLMAP Export**
+### COLMAP Export
 
-  * Generates:
+Generates standard COLMAP input files:
 
-    * `cameras.txt`
-    * `images.txt`
-    * `points3D.txt`
-  * Compatible with 3DGS pipelines
+* `cameras.txt`
+* `images.txt`
+* `points3D.txt`
 
-* **4DGS Dataset Generation**
+Camera intrinsics and extrinsics are computed directly from Blender.
 
-  * Outputs structured frame folders:
+### 4DGS Dataset Generation
 
-    ```
-    Frame0001/
-    Frame0002/
-    ...
-    ```
-  * Each frame contains multi-view images and COLMAP data
+Produces structured frame-wise datasets:
 
-* **Resume Rendering**
+```text id="f1k9zs"
+Frame0001/
+Frame0002/
+...
+```
 
-  * Skips already rendered frames
-  * Suitable for long sequences
+Each frame contains:
+
+* multi-view images
+* camera parameters
+* point cloud data
+
+### Resume Rendering
+
+Allows interrupted rendering processes to continue by skipping already processed frames.
 
 ---
 
 ## Project Structure
 
-```text
-4DGS-Data-Tool/
-├── 4dgs_data_tool.py
+```text id="q2t6ak"
+Multi-View-Capture-Toolkit-for-3D-4D-Gaussian-Splatting/
+├── __init__.py
 ├── assets/
 │   └── predefined_objects.blend
 ├── README.md
-└── LICENSE
 ```
 
 ---
 
 ## Installation
 
-1. Clone or download the repository:
+1. Download this repository as a ZIP file from GitHub, or clone it locally.
 
-   ```bash
-   git clone https://github.com/YOUR_USERNAME/4DGS-Data-Tool.git
-   ```
+2. In Blender, open:
 
-2. Open Blender
-
-3. Navigate to:
-
-   ```
    Edit → Preferences → Add-ons → Install
-   ```
 
-4. Select:
+3. Select the ZIP file of this repository.
 
-   ```
-   4dgs_data_tool.py
-   ```
+4. Enable the add-on in the add-on list.
 
-5. Enable the add-on
+5. Open the 3D Viewport sidebar (N-panel) and locate the **4DGS Tool** tab.
 
 ---
 
@@ -92,11 +95,10 @@ This tool provides a streamlined pipeline for:
 
 ### 1. Add Camera Rig
 
-* Open the N-panel → Cam Array
 * Click **Add Preset Mesh**
 * Select **Studio Capture Dome**
 
-### 2. Create Cameras
+### 2. Create Camera Array
 
 * Select the dome mesh
 * Click **Create Cameras**
@@ -108,27 +110,28 @@ This tool provides a streamlined pipeline for:
 
 ### 4. Export COLMAP Data
 
-* Click:
+* Generate:
 
-  * **Generate cameras.txt + images.txt**
-  * **Generate points3D.txt**
+  * `cameras.txt`
+  * `images.txt`
+  * `points3D.txt`
 
-### 5. Generate 4DGS Dataset (Animation)
+### 5. Generate 4DGS Dataset
 
 * Assign the animated object
 * Set frame range
 * Click:
 
-  ```
-  Render 4DGS Sequence
-  ```
+```text id="8o5jtp"
+Render 4DGS Sequence
+```
 
 Output structure:
 
-```text
+```text id="wq8a9m"
 /output/
   Frame0001/
-    images...
+    *.png
     cameras.txt
     images.txt
     points3D.txt
@@ -136,32 +139,35 @@ Output structure:
 
 ---
 
-## Intended Use
+## Pipeline Summary
 
-This tool is designed for:
+The dataset generation process follows:
 
-* 3D Gaussian Splatting (3DGS)
-* Dynamic Gaussian Splatting (4DGS)
-* Multi-view character and human capture datasets
+1. Create a hemispherical camera rig
+2. Place cameras based on mesh geometry
+3. Render synchronized multi-view images
+4. Export camera parameters and sparse geometry
+5. Repeat for each frame in an animation sequence
+
+This ensures spatial and temporal consistency required for Gaussian-based reconstruction methods.
 
 ---
 
-## Notes
+## Intended Use
 
-* Camera placement is based on mesh faces to ensure uniform coverage
-* Best results are obtained with:
+This toolkit is designed for:
 
-  * clean topology
-  * centered objects
-* Consistent camera configuration across frames supports stable temporal reconstruction
+* 3D Gaussian Splatting (3DGS)
+* Dynamic Gaussian Splatting (4DGS)
+* Multi-view character and human capture
+* Synthetic dataset generation for neural rendering research
 
 ---
 
 ## TODO
 
-* Integration with NeRF / Instant-NGP pipelines
-* Direct export to training-ready formats for additional reconstruction frameworks
-* Automated dataset validation tools
+- Extend the toolkit to support NeRF (Instant-NGP) dataset generation pipeline  
+- Integrate direct training support via Postshot 
 
 ---
 
@@ -169,31 +175,13 @@ This tool is designed for:
 
 If you use this tool in your research, please cite:
 
-```text
-@misc{xiaohan2025_4dgs_tool,
-  author = {Xiaohan},
-  title = {4DGS Data Tool},
-  year = {2025},
-  howpublished = {GitHub}
+```text id="0l4v9n"
+@article{sun2025far,
+  title={From Far and Near: Perceptual Evaluation of Crowd Representations Across Levels of Detail},
+  author={Sun, Xiaohan and O'Sullivan, Carol},
+  journal={arXiv preprint arXiv:2510.20558},
+  year={2025}
 }
 ```
 
 ---
-
-## License
-
-MIT License (or your chosen license)
-
----
-
-## Acknowledgements
-
-* Blender Python API
-* COLMAP
-* 3D Gaussian Splatting (Kerbl et al. 2023)
-
----
-
-## Contact
-
-For questions or collaboration, please use GitHub Issues.
