@@ -1,11 +1,11 @@
 bl_info = {
-    "name": "4DGS Data Tool",
+    "name": "4DGS Capture Toolkit",
     "blender": (4, 0, 0),
     "category": "Object",
     "version": (1, 0, 0),
-    "author": "X 2025",
-    "description": "Build camera arrays, render multi-view image sets, and export COLMAP data for 3DGS / 4DGS datasets.",
-    "location": "View3D > N-panel > 4DGS Data Tool",
+    "author": "X (2025)",
+    "description": "Multi-view capture and COLMAP dataset generation for 3D/4D Gaussian Splatting.",
+    "location": "View3D > N-panel > 4DGS Tool",
     "support": 'COMMUNITY',
 }
 
