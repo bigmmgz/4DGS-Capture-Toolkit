@@ -1,4 +1,4 @@
-# Multi-View Capture Toolkit
+# 4DGS Capture Toolkit
 
 A Blender add-on for generating multi-view datasets and per-frame COLMAP data for 3D Gaussian Splatting (3DGS) and dynamic (4DGS) reconstruction.
 
