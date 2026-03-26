@@ -17,7 +17,6 @@ This add-on integrates the full pipeline inside Blender by providing:
 * COLMAP-compatible data export
 * Frame-wise dataset generation for animated sequences
 
-The generated outputs are directly suitable for training 3DGS and 4DGS models.
 <img width="1631" height="328" alt="gstool_pipeline" src="https://github.com/user-attachments/assets/46f5739f-489f-4628-9a78-0fd0d5797264" />
 ---
 
