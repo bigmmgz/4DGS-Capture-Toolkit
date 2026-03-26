@@ -18,7 +18,7 @@ This add-on integrates the full pipeline inside Blender by providing:
 * Frame-wise dataset generation for animated sequences
 
 <img width="1631" height="328" alt="gstool_pipeline" src="https://github.com/user-attachments/assets/46f5739f-489f-4628-9a78-0fd0d5797264" />
----
+
 
 ## Features
 
