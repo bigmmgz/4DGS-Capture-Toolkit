@@ -136,30 +136,6 @@ Output structure:
     points3D.txt
 ```
 
----
-
-## Pipeline Summary
-
-The dataset generation process follows:
-
-1. Create a hemispherical camera rig
-2. Place cameras based on mesh geometry
-3. Render synchronized multi-view images
-4. Export camera parameters and sparse geometry
-5. Repeat for each frame in an animation sequence
-
-This ensures spatial and temporal consistency required for Gaussian-based reconstruction methods.
-
----
-
-## Intended Use
-
-This toolkit is designed for:
-
-* 3D Gaussian Splatting (3DGS)
-* Dynamic Gaussian Splatting (4DGS)
-* Multi-view character and human capture
-* Synthetic dataset generation for neural rendering research
 
 ---
 
