@@ -165,8 +165,7 @@ This toolkit is designed for:
 
 ## TODO
 
-- Extend the toolkit to support NeRF (Instant-NGP) dataset generation pipeline  
-- Integrate direct training support via Postshot 
+- Update support for the NeRF (Instant-NGP) dataset generation pipeline
 
 ---
 
